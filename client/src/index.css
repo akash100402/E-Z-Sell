@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 15px;
+  
+
+}
+body{
+  /* background-color: rgb(205, 255, 255) !important; */
+}
+#header-logo{
+  font-weight: bolder !important;
+  font-size: 50px !important;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
+  text-shadow: 0 0 10px #316472;
+
+}
+#header-name{
+  color: #f4b700;
+  font-size: 40px !important;
+  font-weight: bolder !important;
+  
+}
+#productGrid{
+  background-color: rgb(255, 255, 255) !important;
+
+}
+#productGrid:hover{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
+  background-color: rgb(255, 255, 255) !important;
+}
+input, select,textarea {
+  min-height: 45px !important;
+  border: 1px solid #b9b9b9 !important;
+  width: 100% ;
+}
+input:focus,textarea:focus, select:focus {
+  outline: none !important;
+  border: 1px solid #64ceff !important;
+  box-shadow: none !important;
+}
+button {
+  color: black !important;
+  height: 45px !important;
+  background-color: #22d3ee !important;
+}
+button:hover {
+  color: rgb(255, 255, 255) !important;
+  background-color: rgb(30, 154, 203) !important;
+}
+
+button:active {
+  background-color: #ffffff !important;
+  color: black !important;
+ 
+}
+table{
+  border: #878787 1px solid !important;
+  border-radius: 2px;
+ 
+}
+i{
+  font-size: 20px !important;
+}
+.max-width{
+  max-width: max-content !important;
+}
+.product{
+  color: #51ff6b;
+  
+}
+#add-product-button{
+  background-color: #f4b700 !important;
+  transition: 0.2s ease-in;
+}
+#add-product-button:hover{
+  background-color: rgb(54, 240, 8) !important;
+  color: black !important;
+  border: none !important;
+}
+
+
+#logReg-bg{
+  background-image: url('pages/bg_imgs/yellow-ecom.jpg') !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#logReg-grid{
+  background-color: rgba(0, 0, 0, 0.314);
+}
+
+#log-reg{
+  color: white !important;
+}
+
+#footer{
+  position: relative !important;
+  width: 100% !important;
+}
+#banner{
+  width: 1120px!important;
+  height: 320px !important;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  align-self: center !important;
+}
+#footer-icons{
+  width: 40px;
+  height: auto;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+border-radius: 20px;
+}
+.slick-next {
+  color: black !important;
+  background-color: #12101038 !important; 
+}
+.slick-prev{
+  background-color: #12101038 !important; 
+}
+.slick-next:hover {
+  color: black !important;
+  background-color: #12101038 !important; 
+}
+.slick-prev:hover{
+  background-color: #12101038 !important; 
+
+}
+
+#head-search{
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#head-search-button{
+  position: relative;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  margin-left: -10px !important;
+  border: none !important;
+  width: 50px !important;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: #ebbc00 !important;
+
+}
+#head-prof{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+border-radius: 15px !important;
+}
+#profile-photo{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+}
