@@ -13,7 +13,10 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
+<<<<<<< HEAD
       select: false,
+=======
+>>>>>>> a13aed8a99a2a1ce124a8551daeb4b2d118a213e
     },
     role: {
       type: String,
@@ -33,6 +36,7 @@ const userSchema = new mongoose.Schema(
   }
 );
 
+<<<<<<< HEAD
 userSchema.set("toJSON", {
   transform: (_doc, ret) => {
     delete ret.password;
@@ -40,6 +44,8 @@ userSchema.set("toJSON", {
   },
 });
 
+=======
+>>>>>>> a13aed8a99a2a1ce124a8551daeb4b2d118a213e
 const User = mongoose.model("users", userSchema);
 
 module.exports = User;

@@ -27,7 +27,11 @@ function BidModal({ showBidModal, setShowBidModal, product, reloadData }) {
         await AddNotification({
           title: "A new bid has been placed",
           message: `A new bid has been placed on your product ${product.name} by ${user.name} for ₹ ${values.bidAmount}`,
+<<<<<<< HEAD
           product: product._id,
+=======
+          user: product.seller._id,
+>>>>>>> a13aed8a99a2a1ce124a8551daeb4b2d118a213e
           onClick: `/profile`,
           read: false,
         });

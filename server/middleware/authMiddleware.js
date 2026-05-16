@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 
 module.exports = (req, res, next) => {
   try {
+<<<<<<< HEAD
     const authHeader = req.header("authorization");
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return res.status(401).send({
@@ -31,3 +32,17 @@ module.exports = (req, res, next) => {
     });
   }
 };
+=======
+    //get token from the header
+    const token = req.header("authorization").split(" ")[1];
+    const decryptedToken = jwt.verify(token, process.env.jwt_secret);
+    req.body.userId = decryptedToken.userId;
+    next();
+  } catch (error) {
+    res.send({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+>>>>>>> a13aed8a99a2a1ce124a8551daeb4b2d118a213e
