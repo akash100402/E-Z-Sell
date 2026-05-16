@@ -1,8 +1,15 @@
 const express = require("express");
+const helmet = require("helmet");
 const app = express();
-app.use(express.json());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
+app.use(express.json({ limit: "2mb" }));
 require("dotenv").config();
 const dbConfig = require("./config/dbConfig");
+
 const port = process.env.PORT || 5000;
 
 const usersRoute = require("./routes/usersRoute");
@@ -27,6 +34,6 @@ if (process.env.NODE_ENV === "production") {
 
 
 
-app.listen(port, () =>
-  console.log(`Node/Express server Started on port ${port}`)
-);
+app.listen(port, () => {
+  console.log(`Node/Express server Started on port ${port}`);
+});

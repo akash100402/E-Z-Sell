@@ -121,7 +121,7 @@ function ProtectedPage({ children }) {
           </div>
         </div>
         {/* body */}
-        <div className="">{children}</div>
+        <div>{children}</div>
         {
           <Notifications
             notifications={notifications}

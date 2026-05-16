@@ -93,7 +93,7 @@ i{
   background-size: cover;
 }
 #logReg-grid{
-  background-color: rgba(0, 0, 0, 0.378);
+  background-color: rgba(0, 0, 0, 0.314);
 }
 
 #log-reg{
@@ -113,20 +113,22 @@ i{
 #footer-icons{
   width: 40px;
   height: auto;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+border-radius: 20px;
 }
 .slick-next {
   color: black !important;
-  background-color: #12101038 !important; /* Set your desired background color */
+  background-color: #12101038 !important; 
 }
 .slick-prev{
-  background-color: #12101038 !important; /* Set your desired background color */
+  background-color: #12101038 !important; 
 }
 .slick-next:hover {
   color: black !important;
-  background-color: #12101038 !important; /* Set your desired background color */
+  background-color: #12101038 !important; 
 }
 .slick-prev:hover{
-  background-color: #12101038 !important; /* Set your desired background color */
+  background-color: #12101038 !important; 
 
 }
 
@@ -149,4 +151,8 @@ i{
 #head-prof{
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 border-radius: 15px !important;
+}
+#profile-photo{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
 }

@@ -1,0 +1,16 @@
+1. Run Back-end
+
+   * Split terminal, make sure it is  nodemon terminal
+   * Run Server.js located in the Server directory -- npx nodemon server/server
+
+2. Run Front-end
+
+   * In Other terminal change directory to client -- cd client
+   * Start the Application -- npm start
+
+
+--> To see database Collection
+         
+             * Copy the MongoDB path in the .env file and paste it in the MongoDB compass app
+
+--> Media file were store and retrieve from the Cloudinary site

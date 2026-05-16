@@ -72,7 +72,7 @@ function Home() {
             return (
               <div
               id="productGrid"
-                className="border border-gray-300 rounded border-solid flex flex-col gap-2 pb-2 cursor-pointer"
+                className="border border-gray-300 rounded-lg border-solid flex flex-col gap-2 pb-2 cursor-pointer"
                 key={product._id}
                 onClick={() => navigate(`/product/${product._id}`)}
               >

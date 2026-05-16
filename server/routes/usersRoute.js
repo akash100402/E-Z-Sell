@@ -3,7 +3,11 @@ const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const authMiddleware = require("../middleware/authMiddleware");
+const adminMiddleware = require("../middleware/adminMiddleware");
 
+// Valid bcrypt hash used only to normalize timing when email is not found
+const DUMMY_HASH =
+  "$2a$10$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31jW";
 
 //new user Registeration
 router.post("/register", async (req, res) => {
@@ -17,10 +21,12 @@ router.post("/register", async (req, res) => {
     //hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
-    req.body.password = hashedPassword;
 
-    //save user
-    const newUser = new User(req.body);
+    const newUser = new User({
+      name: req.body.name,
+      email: req.body.email,
+      password: hashedPassword,
+    });
     await newUser.save();
     res.send({
       success: true,
@@ -36,47 +42,52 @@ router.post("/register", async (req, res) => {
 
 //user login
 router.post("/login", async (req, res) => {
+  const genericError = () =>
+    res.send({
+      success: false,
+      message: "Invalid email or password",
+    });
   try {
-    //check if user exists
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ email: req.body.email }).select(
+      "+password"
+    );
     if (!user) {
-      throw new Error("User Not Found");
+      await bcrypt.compare(req.body.password || "", DUMMY_HASH);
+      return genericError();
     }
-     // if user is active
-     if (user.status !== "active") {
-      throw new Error("The user account is blocked , please contact admin");
+    if (user.status !== "active") {
+      return res.send({
+        success: false,
+        message: "The user account is blocked , please contact admin",
+      });
     }
-    //compare password
     const validPassword = await bcrypt.compare(
       req.body.password,
       user.password
     );
     if (!validPassword) {
-      throw new Error("Invalid Password");
+      return genericError();
     }
-    //create and assign token
     const token = jwt.sign({ userId: user._id }, process.env.jwt_secret, {
       expiresIn: "30d",
     });
 
-    //send response
     res.send({
       success: true,
       message: "User Logged in Successfully",
       data: token,
     });
   } catch (error) {
-    res.send({
-      success: false,
-      message: error.message,
-    });
+    return genericError();
   }
 });
 
+});
+
 //get current user
-router.get("/get-current-user", authMiddleware,async (req, res) => {
+router.get("/get-current-user", authMiddleware, async (req, res) => {
   try {
-    const user = await User.findById(req.body.userId);
+    const user = await User.findById(req.userId);
     res.send({
       success: true,
       message: "User fetched successfully",
@@ -91,9 +102,9 @@ router.get("/get-current-user", authMiddleware,async (req, res) => {
 });
 
 // get all users
-router.get("/get-users", authMiddleware, async (req, res) => {
+router.get("/get-users", authMiddleware, adminMiddleware, async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await User.find().select("-password");
     res.send({
       success: true,
       message: "Users fetched successfully",
@@ -108,19 +119,25 @@ router.get("/get-users", authMiddleware, async (req, res) => {
 });
 
 // update user status
-router.put("/update-user-status/:id", authMiddleware, async (req, res) => {
-  try {
-    await User.findByIdAndUpdate(req.params.id, req.body);
-    res.send({
-      success: true,
-      message: "User status updated successfully",
-    });
-  } catch (error) {
-    res.send({
-      success: false,
-      message: error.message,
-    });
+router.put(
+  "/update-user-status/:id",
+  authMiddleware,
+  adminMiddleware,
+  async (req, res) => {
+    try {
+      const { status } = req.body;
+      await User.findByIdAndUpdate(req.params.id, { status });
+      res.send({
+        success: true,
+        message: "User status updated successfully",
+      });
+    } catch (error) {
+      res.send({
+        success: false,
+        message: error.message,
+      });
+    }
   }
-});
+);
 
 module.exports = router;

@@ -11,8 +11,9 @@ const Footer = () => {
   return (
     <footer className="footer bg-gray-700 text-white px-7 py-3 mt-5" id='footer'>
       <div className="about-section flex justify-between items-center w-full mt-3">
-        <div className="profile-photo">
-          <img className="w-16 rounded-full" src={profilePhoto} alt="Akash A" />
+        <div class="flex flex-col">
+          <img id="profile-photo" className="w-16 rounded-full" src={profilePhoto} alt="Akash A" />
+          {/* <a className='no-underline p-1 bg-lime-400 text-xs rounded-md text-center mt-2' href='#'>Click!</a> */}
         </div>
         <div className="contact-details">
           <h3>ABOUT ME</h3>
@@ -55,7 +56,7 @@ const Footer = () => {
         </div>
         <div >
       
-      <div><p>📧adhiakash0@gmail.com <br/> 
+      <div className=''><p><a href="mailto:aakash10aj@gmail.com" className='no-underline text-white'>📧 aakash10aj@gmail.com</a><br/> 
       &#169;  E-Z Sell@2023<br/>
       📍Chennai-005</p></div>
       </div>

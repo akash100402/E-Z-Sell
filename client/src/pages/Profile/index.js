@@ -18,8 +18,8 @@ function Profile() {
           <UserBids />
         </Tabs.TabPane>
         <Tabs.TabPane tab="General" key="3">
-          <div className="flex flex-col w-1/3">
-            <span className=" text-2xl flex justify-between">
+          <div className="flex flex-col w-1/3 text-amber-400">
+            <span className=" text-2xl flex justify-between ">
               Name:<b className="text-xl">{user.name}</b>
             </span>
             <span className="text-2xl flex justify-between">
