@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const authMiddleware = require("../middleware/authMiddleware");
 const Notification = require("../models/notificationsModel");
-<<<<<<< HEAD
 const Product = require("../models/productModel");
 
 // add a notification (recipient derived from product when provided)
@@ -30,13 +29,6 @@ router.post("/notify", authMiddleware, async (req, res) => {
       user: recipientId,
       read: false,
     });
-=======
-
-// add a notification
-router.post("/notify", authMiddleware, async (req, res) => {
-  try {
-    const newNotification = new Notification(req.body);
->>>>>>> a13aed8a99a2a1ce124a8551daeb4b2d118a213e
     await newNotification.save();
     res.send({
       success: true,
@@ -54,11 +46,7 @@ router.post("/notify", authMiddleware, async (req, res) => {
 router.get("/get-all-notifications", authMiddleware, async (req, res) => {
   try {
     const notifications = await Notification.find({
-<<<<<<< HEAD
       user: req.userId,
-=======
-      user: req.body.userId,
->>>>>>> a13aed8a99a2a1ce124a8551daeb4b2d118a213e
     }).sort({ createdAt: -1 });
     res.send({
       success: true,
@@ -75,7 +63,6 @@ router.get("/get-all-notifications", authMiddleware, async (req, res) => {
 // delete a notification
 router.delete("/delete-notification/:id", authMiddleware, async (req, res) => {
   try {
-<<<<<<< HEAD
     const removed = await Notification.findOneAndDelete({
       _id: req.params.id,
       user: req.userId,
@@ -86,9 +73,6 @@ router.delete("/delete-notification/:id", authMiddleware, async (req, res) => {
         message: "Notification not found",
       });
     }
-=======
-    await Notification.findByIdAndDelete(req.params.id);
->>>>>>> a13aed8a99a2a1ce124a8551daeb4b2d118a213e
     res.send({
       success: true,
       message: "Notification deleted successfully",
@@ -105,11 +89,7 @@ router.delete("/delete-notification/:id", authMiddleware, async (req, res) => {
 router.put("/read-all-notifications", authMiddleware, async (req, res) => {
   try {
     await Notification.updateMany(
-<<<<<<< HEAD
       { user: req.userId, read: false },
-=======
-      { user: req.body.userId, read: false },
->>>>>>> a13aed8a99a2a1ce124a8551daeb4b2d118a213e
       { $set: { read: true } }
     );
     res.send({
